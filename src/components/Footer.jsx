@@ -42,8 +42,8 @@ export default function Footer() {
             </li>
 
             <li>
-              <a href="mailto:indrajit@leensfoam.com">
-                indrajit@leensfoam.com
+              <a href="mailto:info@leensfoam.com">
+                info@leensfoam.com
               </a>
             </li>
 
