@@ -49,9 +49,9 @@ export default function Contact() {
               <span className="lbl mono">EMAIL</span>
               <a
                 className="val"
-                href="mailto:indrajit@leensfoam.com"
+                href="mailto:info@leensfoam.com"
               >
-                indrajit@leensfoam.com
+                info@leensfoam.com
               </a>
             </div>
 
@@ -76,7 +76,7 @@ export default function Contact() {
             <div className="map-frame">
               <iframe
                 title="Leensfoam location"
-                src="https://maps.google.com/maps?q=Vasai%20East%2C%20Maharashtra%20401208&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                src="https://maps.app.goo.gl/bdJvLRgyB19Jje9U8"
                 loading="lazy"
               />
             </div>
