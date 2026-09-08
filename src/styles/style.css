@@ -4265,3 +4265,26 @@ section:has(.supply-grid) {
     font-size: 34px;
   }
 }
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -14px;
+}
+
+.col-md-4 {
+  width: 33.333333%;
+  padding: 0 14px;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .col-md-4 {
+    width: 50%;
+  }
+}
+
+@media (max-width: 576px) {
+  .col-md-4 {
+    width: 100%;
+  }
+}
