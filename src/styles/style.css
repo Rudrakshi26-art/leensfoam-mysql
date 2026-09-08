@@ -555,6 +555,12 @@ form{background:#fff;border:1px solid var(--line);border-radius:24px;padding:44p
 .filter-btn.active {
   box-shadow: 0 8px 18px -8px rgba(243,111,10,.45);
 }
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  max-width: 1100px;
+}
 .product-card{background:#fff;border-radius:22px;padding:26px;position:relative;overflow:hidden;border:1px solid var(--line);transition:transform .4s ease,box-shadow .4s ease;cursor:pointer;box-shadow:0 2px 12px -4px rgba(11,25,48,.06)}
 .product-card:hover{transform:translateY(-8px);box-shadow:0 30px 60px -30px rgba(11,25,48,.28)}
 .product-visual {
