@@ -559,7 +559,7 @@ form{background:#fff;border:1px solid var(--line);border-radius:24px;padding:44p
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 28px;
-  max-width: 100px;
+  max-width: none;
 }
 .product-card{background:#fff;border-radius:22px;padding:26px;position:relative;overflow:hidden;border:1px solid var(--line);transition:transform .4s ease,box-shadow .4s ease;cursor:pointer;box-shadow:0 2px 12px -4px rgba(11,25,48,.06)}
 .product-card:hover{transform:translateY(-8px);box-shadow:0 30px 60px -30px rgba(11,25,48,.28)}
