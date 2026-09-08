@@ -97,13 +97,14 @@ export default function Products() {
         )}
 
         {!loading && !error && (
-          <div className="product-grid">
+          <div className="row">
             {visible.map((p, i) => (
-              <ProductCard
-                product={p}
-                index={i}
-                key={p.id}
-              />
+              <div className="col-md-4" key={p.id}>
+                <ProductCard
+                  product={p}
+                  index={i}
+                />
+              </div>
             ))}
           </div>
         )}
