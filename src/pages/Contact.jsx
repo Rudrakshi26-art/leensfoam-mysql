@@ -73,13 +73,18 @@ export default function Contact() {
               </span>
             </div>
 
-            <div className="map-frame">
-              <iframe
-                title="Leensfoam location"
-                src="https://maps.app.goo.gl/bdJvLRgyB19Jje9U8"
-                loading="lazy"
-              />
-            </div>
+          <div className="map-frame">
+            <iframe
+              title="Leensfoam location"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14953.801380968269!2d72.8650834493928!3d19.411243049101763!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7a8c8c3c405ed%3A0x3f457df9a6b7fecf!2sLEENSFOAM%20PRIVATE%20LIMITED%20(Painting%20Roller%20Manufacturer)!5e0!3m2!1sen!2sin!4v1788862743730!5m2!1sen!2sin"
+              width="600"
+              height="450"
+              style={{ border: 0 }}
+              allowFullScreen=""
+              loading="lazy"
+              referrerPolicy="strict-origin-when-cross-origin"
+            />
+          </div>
           </div>
 
           <form id="contactForm" onSubmit={handleSubmit}>
