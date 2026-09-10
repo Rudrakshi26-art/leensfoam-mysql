@@ -62,6 +62,66 @@ export default function AdminProducts() {
 
 
   // =====================================================
+  // PRODUCT ORDER
+  // =====================================================
+
+  const moveProduct = (index, direction) => {
+    const newProducts = [...products];
+    const newIndex = index + direction;
+
+    if (newIndex < 0 || newIndex >= newProducts.length) {
+      return;
+    }
+
+    [newProducts[index], newProducts[newIndex]] = [
+      newProducts[newIndex],
+      newProducts[index],
+    ];
+
+    setProducts(newProducts);
+  };
+
+  const saveProductOrder = async () => {
+    try {
+      setSaving(true);
+
+      const token = localStorage.getItem('adminToken');
+
+      const response = await fetch(
+        `${API_URL}/api/products/reorder`,
+        {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            productIds: products.map((product) => product.id),
+          }),
+        }
+      );
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(
+          data.message || 'Failed to save product order'
+        );
+      }
+
+      await fetchProducts();
+
+      alert('Product order saved successfully!');
+    } catch (err) {
+      console.error('Save order error:', err);
+      alert(err.message);
+    } finally {
+      setSaving(false);
+    }
+  };
+
+
+  // =====================================================
   // EDIT PRODUCT
   // =====================================================
 
@@ -447,12 +507,22 @@ export default function AdminProducts() {
           </p>
         </div>
 
-        <button
-          onClick={openAddForm}
-          style={primaryButton}
-        >
-          + Add Product
-        </button>
+        <div style={{ display: 'flex', gap: '10px' }}>
+          <button
+            onClick={saveProductOrder}
+            disabled={saving}
+            style={primaryButton}
+          >
+            {saving ? 'Saving Order...' : 'Save Order'}
+          </button>
+
+          <button
+            onClick={openAddForm}
+            style={primaryButton}
+          >
+            + Add Product
+          </button>
+        </div>
       </div>
 
 
@@ -479,7 +549,7 @@ export default function AdminProducts() {
       {!loading && !error && (
         <div>
 
-          {products.map((product) => (
+          {products.map((product, index) => (
             <div
               key={product.id}
               style={{
@@ -560,8 +630,25 @@ export default function AdminProducts() {
                   display: 'flex',
                   gap: '10px',
                   marginTop: '20px',
+                  flexWrap: 'wrap',
                 }}
               >
+
+                <button
+                  onClick={() => moveProduct(index, -1)}
+                  disabled={index === 0}
+                  style={secondaryButton}
+                >
+                  ↑ Move Up
+                </button>
+
+                <button
+                  onClick={() => moveProduct(index, 1)}
+                  disabled={index === products.length - 1}
+                  style={secondaryButton}
+                >
+                  ↓ Move Down
+                </button>
 
                 <button
                   onClick={() => handleEdit(product)}
