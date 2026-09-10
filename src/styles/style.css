@@ -573,6 +573,27 @@ form{background:#fff;border:1px solid var(--line);border-radius:24px;padding:44p
   align-items: center;
   justify-content: center;
 }
+.product-visual {
+  position: relative !important;
+}
+
+.new-badge {
+  position: absolute !important;
+  top: 12px !important;
+  right: 12px !important;
+
+  padding: 6px 10px;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+  border-radius: 4px;
+
+  background: #000;
+  color: #fff;
+
+  z-index: 999;
+  display: block;
+}
 .product-roller{width:70%;height:34px;border-radius:20px;position:relative;box-shadow:0 12px 24px -8px rgba(0,0,0,.3)}
 .product-roller::before{content:'';position:absolute;left:-16px;top:50%;transform:translateY(-50%);width:16px;height:6px;background:var(--muted);border-radius:2px}
 .product-roller::after{content:'';position:absolute;right:-38px;top:50%;transform:translateY(-50%);width:44px;height:4px;background:var(--navy);border-radius:2px}
