@@ -35,10 +35,9 @@ export default function ProductCard({ product, index = 0 }) {
     imageUrl,
     c1,
     c2,
+    is_new,
   } = product;
 
-  // Use backend image URL when available.
-  // Otherwise fall back to the existing frontend assets.
   const frontendImage = IMAGE_MAP[image] || image || '';
 
   const finalImageUrl =
@@ -55,11 +54,35 @@ export default function ProductCard({ product, index = 0 }) {
       <div
         className="product-visual"
         style={{
+          position: 'relative',
           background: `linear-gradient(135deg, ${
             c1 || '#f5f5f5'
           }22, ${c2 || '#ffffff'}33)`,
         }}
       >
+        {/* NEW Badge */}
+        {Number(is_new) === 1 && (
+          <span
+            className="new-badge"
+            style={{
+              position: 'absolute',
+              top: '12px',
+              right: '12px',
+              padding: '6px 10px',
+              fontSize: '11px',
+              fontWeight: '700',
+              lineHeight: '1',
+              borderRadius: '4px',
+              background: '#000',
+              color: '#fff',
+              zIndex: 999,
+              display: 'block',
+            }}
+          >
+            NEW
+          </span>
+        )}
+
         {finalImageUrl && (
           <img
             src={finalImageUrl}
