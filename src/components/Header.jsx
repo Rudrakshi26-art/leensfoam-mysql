@@ -97,15 +97,14 @@ export default function Header() {
 
       </nav>
 
-
-      {/* Dealer CTA */}
-      <NavLink
-        to="/contact"
+      {/* Download Brochure */}
+      <a
+        href="/brochure.pdf"
+        download="Leensfoam-Brochure.pdf"
         className="cta-btn"
-        data-cursor="dealer"
       >
-        Become a Dealer →
-      </NavLink>
+        Download Brochure →
+      </a>
     </header>
   );
 }
