@@ -282,6 +282,7 @@ export default function AdminProducts() {
             image: editingProduct.image,
             c1: editingProduct.c1,
             c2: editingProduct.c2,
+            is_new: editingProduct.is_new,
           }),
         }
       );
@@ -379,7 +380,6 @@ export default function AdminProducts() {
       setSaving(false);
     }
   };
-
 
   // =====================================================
   // DELETE PRODUCT
@@ -663,7 +663,6 @@ export default function AdminProducts() {
                 >
                   Delete
                 </button>
-
               </div>
 
             </div>
@@ -821,7 +820,29 @@ export default function AdminProducts() {
                 placeholder="#000000"
                 style={inputStyle}
               />
-
+      <label
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  marginTop: '20px',
+                  marginBottom: '20px',
+                  fontWeight: '600',
+                  cursor: 'pointer',
+                }}
+              >
+                <input
+                  type="checkbox"
+                  checked={Number(editingProduct.is_new) === 1}
+                  onChange={(e) =>
+                    setEditingProduct((current) => ({
+                      ...current,
+                      is_new: e.target.checked ? 1 : 0,
+                    }))
+                  }
+                />
+                Show NEW badge
+              </label>
 
               <div style={buttonRowStyle}>
 
