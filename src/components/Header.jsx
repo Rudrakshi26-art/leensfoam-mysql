@@ -103,8 +103,8 @@ export default function Header() {
         download="Leensfoam-Brochure.pdf"
         className="cta-btn"
       >
-        Download Brochure →
-      </a>
+      Download Brochure →
+    </a>
     </header>
   );
 }
