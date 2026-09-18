@@ -716,13 +716,20 @@ export default function AdminProducts() {
 
               <label>Category</label>
 
-              <input
+              <select
                 name="cat"
                 value={editingProduct.cat || ''}
                 onChange={handleChange}
                 required
                 style={inputStyle}
-              />
+              >
+                <option value="">Select category</option>
+                <option value="foam">Foam Rollers</option>
+                <option value="interior">Fabric — Interior</option>
+                <option value="exterior">Fabric — Exterior</option>
+                <option value="specialty">Specialty</option>
+                <option value="handles">Handles</option>
+              </select>
 
 
               <label>Tag</label>
@@ -916,16 +923,21 @@ export default function AdminProducts() {
               />
 
 
-              <label>Category</label>
-
-              <input
-                name="cat"
-                value={newProduct.cat}
-                onChange={handleNewProductChange}
-                placeholder="e.g. foam"
-                required
-                style={inputStyle}
-              />
+            <label>Category</label>
+            <select
+              name="cat"
+              value={newProduct.cat}
+              onChange={handleNewProductChange}
+              required
+              style={inputStyle}
+            >
+              <option value="">Select category</option>
+              <option value="foam">Foam Rollers</option>
+              <option value="interior">Fabric — Interior</option>
+              <option value="exterior">Fabric — Exterior</option>
+              <option value="specialty">Specialty</option>
+              <option value="handles">Handles</option>
+            </select>
 
 
               <label>Tag</label>
