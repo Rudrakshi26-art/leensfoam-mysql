@@ -11,6 +11,7 @@ const FILTERS = [
   { key: 'interior', label: 'Fabric — Interior' },
   { key: 'exterior', label: 'Fabric — Exterior' },
   { key: 'specialty', label: 'Specialty' },
+  { key: 'handles', label: 'Handles' },
 ];
 
 export default function Products() {
@@ -84,31 +85,34 @@ export default function Products() {
           ))}
         </div>
 
+        {/* LOADING */}
         {loading && (
-          <p style={{ color: 'var(--muted)' }}>
-            Loading products...
-          </p>
+          <div className="product-loader">
+            <div className="loader-circle"></div>
+          </div>
         )}
 
+        {/* ERROR */}
         {error && (
           <p style={{ color: 'var(--muted)' }}>
             {error}
           </p>
         )}
 
+        {/* PRODUCTS */}
         {!loading && !error && (
-          <div className="row">
+          <div className="product-grid">
             {visible.map((p, i) => (
-              <div className="col-md-4" key={p.id}>
-                <ProductCard
-                  product={p}
-                  index={i}
-                />
-              </div>
+              <ProductCard
+                product={p}
+                index={i}
+                key={p.id}
+              />
             ))}
           </div>
         )}
 
+        {/* NO PRODUCTS */}
         {!loading && !error && visible.length === 0 && (
           <p style={{ color: 'var(--muted)' }}>
             No products in this category yet.
