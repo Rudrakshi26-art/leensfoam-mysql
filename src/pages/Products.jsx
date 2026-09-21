@@ -21,7 +21,25 @@ export default function Products() {
   const [error, setError] = useState('');
 
   useReveal([filter, products.length]);
+    useEffect(() => {
+    document.title = 'Paint Rollers | Foam & Fabric Rollers | Leensfoam';
 
+    let metaDescription = document.querySelector(
+      'meta[name="description"]'
+    );
+
+    if (!metaDescription) {
+      metaDescription = document.createElement('meta');
+      metaDescription.setAttribute('name', 'description');
+      document.head.appendChild(metaDescription);
+    }
+
+    metaDescription.setAttribute(
+      'content',
+      'Explore Leensfoam paint rollers, foam rollers, fabric rollers and specialty rollers for interior and exterior painting applications.'
+    );
+  }, []);
+  
   useEffect(() => {
     const fetchProducts = async () => {
       try {
