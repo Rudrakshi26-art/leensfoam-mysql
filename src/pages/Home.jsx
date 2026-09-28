@@ -101,6 +101,18 @@ export default function Home() {
 
 useEffect(() => {
   document.title = 'Paint Roller Manufacturer in India | Leensfoam';
+  let canonical = document.querySelector('link[rel="canonical"]');
+
+if (!canonical) {
+  canonical = document.createElement('link');
+  canonical.setAttribute('rel', 'canonical');
+  document.head.appendChild(canonical);
+}
+
+canonical.setAttribute(
+  'href',
+  'https://leensfoam-mysql.vercel.app/'
+);
 
   let metaDescription = document.querySelector(
     'meta[name="description"]'
