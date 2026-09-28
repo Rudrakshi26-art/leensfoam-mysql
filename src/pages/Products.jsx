@@ -23,6 +23,18 @@ export default function Products() {
   useReveal([filter, products.length]);
     useEffect(() => {
     document.title = 'Paint Rollers | Foam & Fabric Rollers | Leensfoam';
+    let canonical = document.querySelector('link[rel="canonical"]');
+
+    if (!canonical) {
+      canonical = document.createElement('link');
+      canonical.setAttribute('rel', 'canonical');
+      document.head.appendChild(canonical);
+    }
+
+    canonical.setAttribute(
+      'href',
+      'https://leensfoam-mysql.vercel.app/products'
+    );
 
     let metaDescription = document.querySelector(
       'meta[name="description"]'
