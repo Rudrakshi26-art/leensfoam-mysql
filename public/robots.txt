@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://leensfoam-mysql.vercel.app/sitemap.xml
