@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
 import useReveal from '../hooks/useReveal.js';
 
 const TIMELINE = [
@@ -21,6 +22,38 @@ const TIMELINE = [
 
 export default function About() {
   useReveal();
+
+  useEffect(() => {
+    document.title = 'About Leensfoam | Paint Roller Manufacturer in India';
+
+    let metaDescription = document.querySelector(
+      'meta[name="description"]'
+    );
+
+    if (!metaDescription) {
+      metaDescription = document.createElement('meta');
+      metaDescription.setAttribute('name', 'description');
+      document.head.appendChild(metaDescription);
+    }
+
+    metaDescription.setAttribute(
+      'content',
+      'Learn about Leensfoam, a paint roller manufacturer in India offering foam and fabric rollers for painters, contractors, dealers and paint companies.'
+    );
+
+    let canonical = document.querySelector('link[rel="canonical"]');
+
+    if (!canonical) {
+      canonical = document.createElement('link');
+      canonical.setAttribute('rel', 'canonical');
+      document.head.appendChild(canonical);
+    }
+
+    canonical.setAttribute(
+      'href',
+      'https://leensfoam-mysql.vercel.app/about'
+    );
+  }, []);
 
   return (
     <>
