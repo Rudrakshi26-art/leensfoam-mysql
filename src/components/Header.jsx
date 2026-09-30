@@ -99,7 +99,7 @@ export default function Header() {
 
       {/* Download Brochure */}
       <a
-        href="/brochure.pdf"
+        href="/Leensfoam-Brochure.pdf"
         download="Leensfoam-Brochure.pdf"
         className="cta-btn"
       >
