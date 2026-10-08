@@ -39,13 +39,52 @@ export default function Contact() {
 
   const [submitted, setSubmitted] = useState(false);
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    // TODO: wire this up to your actual email/CRM endpoint
+async function handleSubmit(e) {
+  e.preventDefault();
+
+  const form = e.target;
+
+  const formData = {
+    name: form.name.value,
+    phone: form.phone.value,
+    email: form.email.value,
+    interest: form.interest.value,
+    message: form.message.value,
+  };
+
+  try {
+    const response = await fetch(
+      `${import.meta.env.VITE_API_URL}/api/contact`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      }
+    );
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.message || 'Failed to send message');
+    }
+
     setSubmitted(true);
-    e.target.reset();
-    setTimeout(() => setSubmitted(false), 2600);
+    form.reset();
+
+    setTimeout(() => {
+      setSubmitted(false);
+    }, 2600);
+
+  } catch (error) {
+    console.error('Contact form error:', error);
+
+    alert(
+      'Unable to send your message. Please try again later.'
+    );
   }
+}
 
   return (
     <>
@@ -205,10 +244,9 @@ export default function Contact() {
                 : 'Send message'}
             </button>
 
-            <p className="form-note">
-              This form is a front-end demo — connect it to an email service
-              or CRM endpoint before going live.
-            </p>
+           <p className="form-note">
+              We’ll get back to you as soon as possible.
+          </p>
 
           </form>
 
