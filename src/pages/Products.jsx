@@ -33,7 +33,7 @@ export default function Products() {
 
     canonical.setAttribute(
       'href',
-      'https://leensfoam-mysql.vercel.app/products'
+      'https://leensfoam.com/products'
     );
 
     let metaDescription = document.querySelector(
