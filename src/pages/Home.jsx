@@ -316,141 +316,115 @@ canonical.setAttribute(
         </div>
 
         {/* CATEGORY CARDS */}
-        <div className="roller-category-grid">
+  
+      {/* CATEGORY CARDS - Click to open the selected product category */}
+      <div className="roller-category-grid">
 
-          {/* CARD 1 */}
-          <div className="roller-category-card">
+        {/* CARD 1 - Interior Rollers */}
+        <Link
+          to="/products?category=interior"
+          className="roller-category-card"
+        >
+          <div className="roller-card-content">
+            <div className="roller-card-icon">🏠</div>
 
-            <div className="roller-card-content">
+            <h3>Interior Rollers</h3>
 
-              <div className="roller-card-icon">
-                🏠
-              </div>
+            <p>
+              Smooth, even finishes
+              <br />
+              for interior walls
+            </p>
 
-              <h3>
-                Interior Rollers
-              </h3>
-
-              <p>
-                Smooth, even finishes
-                <br />
-                for interior walls
-              </p>
-
-              <span className="roller-card-arrow">
-                →
-              </span>
-
-            </div>
-
-            <img
-              src="/assets/interior roller.png"
-              alt="Interior paint rollers by Leensfoam"
-              className="roller-card-image"
-            />
-
+            <span className="roller-card-arrow">→</span>
           </div>
 
-          {/* CARD 2 */}
-          <div className="roller-category-card">
+          <img
+            src="/assets/interior roller.png"
+            alt="Interior paint rollers by Leensfoam"
+            className="roller-card-image"
+          />
+        </Link>
 
-            <div className="roller-card-content">
+        {/* CARD 2 - Exterior Rollers */}
+        <Link
+          to="/products?category=exterior"
+          className="roller-category-card"
+        >
+          <div className="roller-card-content">
+            <div className="roller-card-icon">▦</div>
 
-              <div className="roller-card-icon">
-                ▦
-              </div>
+            <h3>Exterior Rollers</h3>
 
-              <h3>
-                Exterior Rollers
-              </h3>
+            <p>
+              Built for textured and
+              <br />
+              rough surfaces
+            </p>
 
-              <p>
-                Built for textured and
-                <br />
-                rough surfaces
-              </p>
-
-              <span className="roller-card-arrow">
-                →
-              </span>
-
-            </div>
-
-            <img
-              src="/assets/exterior roller.png"
-              alt="Exterior paint rollers by Leensfoam"
-              className="roller-card-image"
-            />
-
+            <span className="roller-card-arrow">→</span>
           </div>
 
-          {/* CARD 3 */}
-          <div className="roller-category-card">
+          <img
+            src="/assets/exterior roller.png"
+            alt="Exterior paint rollers by Leensfoam"
+            className="roller-card-image"
+          />
+        </Link>
 
-            <div className="roller-card-content">
+        {/* CARD 3 - Foam Rollers */}
+        <Link
+          to="/products?category=foam"
+          className="roller-category-card"
+        >
+          <div className="roller-card-content">
+            <div className="roller-card-icon">▤</div>
 
-              <div className="roller-card-icon">
-                ▤
-              </div>
+            <h3>Foam Rollers</h3>
 
-              <h3>
-                Foam Rollers
-              </h3>
+            <p>
+              Clean application
+              <br />
+              for smooth finishes
+            </p>
 
-              <p>
-                Clean application
-                <br />
-                for smooth finishes
-              </p>
-
-              <span className="roller-card-arrow">
-                →
-              </span>
-
-            </div>
-
-            <img
-              src="/assets/foam roller.png"
-              alt="Foam paint rollers by Leensfoam"
-              className="roller-card-image"
-            />
-
+            <span className="roller-card-arrow">→</span>
           </div>
 
-          {/* CARD 4 */}
-          <div className="roller-category-card">
+          <img
+            src="/assets/foam roller.png"
+            alt="Foam paint rollers by Leensfoam"
+            className="roller-card-image"
+          />
+        </Link>
 
-            <div className="roller-card-content">
+        {/* CARD 4 - Specialty Rollers */}
+        <Link
+          to="/products?category=specialty"
+          className="roller-category-card"
+        >
+          <div className="roller-card-content">
+            <div className="roller-card-icon">☆</div>
 
-              <div className="roller-card-icon">
-                ☆
-              </div>
+            <h3>Specialty Rollers</h3>
 
-              <h3>
-                Specialty Rollers
-              </h3>
+            <p>
+              Purpose-built solutions
+              <br />
+              for specific applications
+            </p>
 
-              <p>
-                Purpose-built solutions
-                <br />
-                for specific applications
-              </p>
-
-              <span className="roller-card-arrow">
-                →
-              </span>
-
-            </div>
-
-            <img
-              src="/assets/specialty roller.png"
-              alt="Specialty paint rollers by Leensfoam"
-              className="roller-card-image"
-            />
-
+            <span className="roller-card-arrow">→</span>
           </div>
 
-        </div>
+          <img
+            src="/assets/specialty roller.png"
+            alt="Specialty paint rollers by Leensfoam"
+            className="roller-card-image"
+          />
+        </Link>
+
+      </div>
 
       </section>
 
@@ -712,7 +686,9 @@ canonical.setAttribute(
 
       </section>
 
-      <BrandCarousel />
+      {/* ================= TRUSTED BRANDS SECTION - TEMPORARILY DISABLED =================
+<BrandCarousel />
+*/}
 
       {/* ================= CTA ================= */}
       <section className="cta-band">
