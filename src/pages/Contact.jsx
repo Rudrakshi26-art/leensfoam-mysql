@@ -1,9 +1,13 @@
+
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import useReveal from '../hooks/useReveal.js';
 
 export default function Contact() {
   useReveal();
+
+  const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
 
   useEffect(() => {
     document.title = 'Contact Leensfoam | Paint Roller Manufacturer in India';
@@ -37,54 +41,60 @@ export default function Contact() {
     );
   }, []);
 
-  const [submitted, setSubmitted] = useState(false);
+  async function handleSubmit(e) {
+    e.preventDefault();
 
-async function handleSubmit(e) {
-  e.preventDefault();
+    if (sending) return;
 
-  const form = e.target;
+    const form = e.currentTarget;
 
-  const formData = {
-    name: form.name.value,
-    phone: form.phone.value,
-    email: form.email.value,
-    interest: form.interest.value,
-    message: form.message.value,
-  };
+    const formData = {
+      name: form.name.value,
+      phone: form.phone.value,
+      email: form.email.value,
+      interest: form.interest.value,
+      message: form.message.value,
+    };
 
-  try {
-    const response = await fetch(
-      `${import.meta.env.VITE_API_URL}/api/contact`,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
+    setSending(true);
+
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/contact`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(
+          data.message || 'Failed to send message'
+        );
       }
-    );
 
-    const data = await response.json();
+      form.reset();
+      setSubmitted(true);
 
-    if (!response.ok) {
-      throw new Error(data.message || 'Failed to send message');
+      window.setTimeout(() => {
+        setSubmitted(false);
+      }, 3000);
+
+    } catch (error) {
+      console.error('Contact form error:', error);
+
+      alert(
+        'Unable to send your message. Please try again later.'
+      );
+    } finally {
+      setSending(false);
     }
-
-    setSubmitted(true);
-    form.reset();
-
-    setTimeout(() => {
-      setSubmitted(false);
-    }, 2600);
-
-  } catch (error) {
-    console.error('Contact form error:', error);
-
-    alert(
-      'Unable to send your message. Please try again later.'
-    );
   }
-}
 
   return (
     <>
@@ -109,27 +119,20 @@ async function handleSubmit(e) {
 
             <div className="contact-row">
               <span className="lbl mono">PHONE</span>
-              <a
-                className="val"
-                href="tel:+919888887978"
-              >
+              <a className="val" href="tel:+919888887978">
                 +91 98888 87978
               </a>
             </div>
 
             <div className="contact-row">
               <span className="lbl mono">EMAIL</span>
-              <a
-                className="val"
-                href="mailto:info@leensfoam.com"
-              >
-               info@leensfoam.com
+              <a className="val" href="mailto:info@leensfoam.com">
+                info@leensfoam.com
               </a>
             </div>
 
             <div className="contact-row">
               <span className="lbl mono">ADDRESS</span>
-
               <span className="val">
                 201/202/203, Sunshine Heights,<br />
                 Near Dhuri Gate No. 1, Behind IPOL,<br />
@@ -147,108 +150,123 @@ async function handleSubmit(e) {
 
             <div className="map-frame">
               <iframe
-              title="Leensfoam location"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14953.801380968269!2d72.8650834493928!3d19.411243049101763!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7a8c8c3c405ed%3A0x3f457df9a6b7fecf!2sLEENSFOAM%20PRIVATE%20LIMITED%20(Painting%20Roller%20Manufacturer)!5e0!3m2!1sen!2sin!4v1788862743730!5m2!1sen!2sin"
-              width="600"
-              height="450"
-              style={{ border: 0 }}
-              allowFullScreen=""
-              loading="lazy"
-              referrerPolicy="strict-origin-when-cross-origin"
-            />
-          </div>
-          </div>
-
-          <form id="contactForm" onSubmit={handleSubmit}>
-
-            <div className="form-row-2">
-
-              <div className="form-group">
-                <label htmlFor="name">FULL NAME</label>
-                <input
-                  id="name"
-                  name="name"
-                  type="text"
-                  placeholder="Your name"
-                  required
-                />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="phone">PHONE</label>
-                <input
-                  id="phone"
-                  name="phone"
-                  type="tel"
-                  placeholder="+91 00000 00000"
-                  required
-                />
-              </div>
-
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="email">EMAIL</label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                placeholder="you@company.com"
-                required
+                title="Leensfoam location"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14953.801380968269!2d72.8650834493928!3d19.411243049101763!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7a8c8c3c405ed%3A0x3f457df9a6b7fecf!2sLEENSFOAM%20PRIVATE%20LIMITED%20(Painting%20Roller%20Manufacturer)!5e0!3m2!1sen!2sin!4v1788862743730!5m2!1sen!2sin"
+                width="600"
+                height="450"
+                style={{ border: 0 }}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="strict-origin-when-cross-origin"
               />
             </div>
+          </div>
 
-            <div className="form-group">
-              <label htmlFor="interest">I'M INTERESTED IN</label>
+          {submitted ? (
+            <div className="success-screen" role="status">
+              <div className="success-check">
+                <svg viewBox="0 0 100 100" aria-hidden="true">
+                  <circle
+                    cx="50"
+                    cy="50"
+                    r="40"
+                    fill="none"
+                    stroke="#83ce86"
+                    strokeWidth="8"
+                    strokeDasharray="230 22"
+                    strokeLinecap="round"
+                  />
 
-              <select
-                id="interest"
-                name="interest"
-                defaultValue="dealer"
+                  <path
+                    d="M28 50 L44 66 L75 34"
+                    fill="none"
+                    stroke="#83ce86"
+                    strokeWidth="9"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </div>
+
+              <h2>Thank you!</h2>
+              <p>Your submission has been sent.</p>
+            </div>
+          ) : (
+            <form id="contactForm" onSubmit={handleSubmit}>
+
+              <div className="form-row-2">
+                <div className="form-group">
+                  <label htmlFor="name">FULL NAME</label>
+                  <input
+                    id="name"
+                    name="name"
+                    type="text"
+                    placeholder="Your name"
+                    required
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="phone">PHONE</label>
+                  <input
+                    id="phone"
+                    name="phone"
+                    type="tel"
+                    placeholder="+91 00000 00000"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="email">EMAIL</label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder="you@company.com"
+                  required
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="interest">I'M INTERESTED IN</label>
+                <select
+                  id="interest"
+                  name="interest"
+                  defaultValue="dealer"
+                >
+                  <option value="dealer">Becoming a dealer</option>
+                  <option value="bulk">Bulk / wholesale order</option>
+                  <option value="product">Product question</option>
+                  <option value="other">Something else</option>
+                </select>
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="message">MESSAGE</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  placeholder="Tell us what you need..."
+                  required
+                />
+              </div>
+
+              <button
+                type="submit"
+                className="submit-btn"
+                disabled={sending}
               >
-                <option value="dealer">
-                  Becoming a dealer
-                </option>
+                {sending ? 'Sending...' : 'Send message'}
+              </button>
 
-                <option value="bulk">
-                  Bulk / wholesale order
-                </option>
+              <p className="form-note">
+                We’ll get back to you as soon as possible.
+              </p>
 
-                <option value="product">
-                  Product question
-                </option>
-
-                <option value="other">
-                  Something else
-                </option>
-              </select>
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="message">MESSAGE</label>
-
-              <textarea
-                id="message"
-                name="message"
-                placeholder="Tell us what you need..."
-                required
-              />
-            </div>
-
-            <button
-              type="submit"
-              className="submit-btn"
-            >
-              {submitted
-                ? 'Message sent ✓'
-                : 'Send message'}
-            </button>
-
-           <p className="form-note">
-              We’ll get back to you as soon as possible.
-          </p>
-
-          </form>
+            </form>
+          )}
 
         </div>
       </section>
