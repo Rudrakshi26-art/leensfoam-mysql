@@ -171,7 +171,7 @@ canonical.setAttribute(
               roller manufacturing company serving painters, contractors,
               dealers and distributors. We offer high-quality foam and fabric
               paint rollers, OEM and private-label paint roller manufacturing,
-              and bulk paint roller supply for B2B requirements, with 140+
+              and bulk paint roller supply for B2B requirements, with 500+
               products engineered in-house and supplied across India.
             </p>
 
