@@ -98,11 +98,11 @@ export default function Header() {
       </nav>
 
       {/* Download Brochure */}
-       <a
+      <a
         href="/Leensfoam-Brochure.pdf"
         download="Leensfoam-Brochure.pdf"
         className="cta-btn"
-       >
+      >
         Download Brochure →
       </a>
     </header>
